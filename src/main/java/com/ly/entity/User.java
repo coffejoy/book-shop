@@ -1,9 +1,6 @@
 package com.ly.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -17,20 +14,21 @@ import java.util.Date;
 public class User {
 
     @Id
-    @Column(columnDefinition = "bigint")
-    private Long userId;
+    @Column(columnDefinition = "bigInteger")
+    @GeneratedValue
+    private Long bookId;
     private String userName;
     private String userAddress;
-    private int userPassword;
+    private Integer userPassword;
     private Date createTime;
     private Date updateTime;
 
-    public Long getUserId() {
-        return userId;
+    public Long getbookId() {
+        return bookId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setbookId(Long bookId) {
+        this.bookId = bookId;
     }
 
     public String getUserName() {
@@ -49,11 +47,11 @@ public class User {
         this.userAddress = userAddress;
     }
 
-    public int getUserPassword() {
+    public Integer getUserPassword() {
         return userPassword;
     }
 
-    public void setUserPassword(int userPassword) {
+    public void setUserPassword(Integer userPassword) {
         this.userPassword = userPassword;
     }
 

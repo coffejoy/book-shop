@@ -1,9 +1,6 @@
 package com.ly.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -17,15 +14,44 @@ import java.util.Date;
 public class Book {
 
     @Id
-    @Column(columnDefinition = "bigint")
+    @Column(columnDefinition = "bigInteger")
+    @GeneratedValue
     private Long bookId;
     private String bookName;
     private String bookAuthor;
-    private int bookPrice;
-    private int bookDiscount;
-    private int currPrice;
+    private Integer bookPrice;
+    private Integer bookDiscount;
+    private Integer currPrice;
     private Date bookPublishTime;
     private String bookImg;
+    private Integer cateId;
+
+    public Integer getCateId() {
+        return cateId;
+    }
+
+    public void setCateId(Integer cateId) {
+        this.cateId = cateId;
+    }
+
+    private Date createTime;
+    private Date updateTime;
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
     public Long getBookId() {
         return bookId;
@@ -51,27 +77,27 @@ public class Book {
         this.bookAuthor = bookAuthor;
     }
 
-    public int getBookPrice() {
+    public Integer getBookPrice() {
         return bookPrice;
     }
 
-    public void setBookPrice(int bookPrice) {
+    public void setBookPrice(Integer bookPrice) {
         this.bookPrice = bookPrice;
     }
 
-    public int getBookDiscount() {
+    public Integer getBookDiscount() {
         return bookDiscount;
     }
 
-    public void setBookDiscount(int bookDiscount) {
+    public void setBookDiscount(Integer bookDiscount) {
         this.bookDiscount = bookDiscount;
     }
 
-    public int getCurrPrice() {
+    public Integer getCurrPrice() {
         return currPrice;
     }
 
-    public void setCurrPrice(int currPrice) {
+    public void setCurrPrice(Integer currPrice) {
         this.currPrice = currPrice;
     }
 

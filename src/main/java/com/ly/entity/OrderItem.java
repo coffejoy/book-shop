@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -17,16 +18,14 @@ import java.util.Date;
 public class OrderItem {
 
     @Id
-    @Column(columnDefinition = "bigint")
     private Long bookId;
     @Id
-    @Column(columnDefinition = "bigint")
     private Long orderId;
-    private int quantity;
-    private int bookPrice;
+    private Integer quantity;
+    private Integer bookPrice;
     private String bookName;
-    private int bookcurrprice;
-    private int bookTotalPrice;
+    private Integer bookCurrprice;
+    private Integer bookTotalPrice;
     private Date createTime;
     private Date updateTime;
 
@@ -46,19 +45,19 @@ public class OrderItem {
         this.orderId = orderId;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public int getBookPrice() {
+    public Integer getBookPrice() {
         return bookPrice;
     }
 
-    public void setBookPrice(int bookPrice) {
+    public void setBookPrice(Integer bookPrice) {
         this.bookPrice = bookPrice;
     }
 
@@ -70,19 +69,19 @@ public class OrderItem {
         this.bookName = bookName;
     }
 
-    public int getBookcurrprice() {
-        return bookcurrprice;
+    public Integer getBookCurrprice() {
+        return bookCurrprice;
     }
 
-    public void setBookcurrprice(int bookcurrprice) {
-        this.bookcurrprice = bookcurrprice;
+    public void setBookCurrprice(Integer bookCurrprice) {
+        this.bookCurrprice = bookCurrprice;
     }
 
-    public int getBookTotalPrice() {
+    public Integer getBookTotalPrice() {
         return bookTotalPrice;
     }
 
-    public void setBookTotalPrice(int bookTotalPrice) {
+    public void setBookTotalPrice(Integer bookTotalPrice) {
         this.bookTotalPrice = bookTotalPrice;
     }
 
@@ -101,4 +100,69 @@ public class OrderItem {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+    public static class RelationPK implements Serializable {
+
+        private static final long serialVersionUID = -7189167162738318201L;
+        @Column(length = 12, nullable = false)
+        private Long orderId;
+        @Column(length = 12, nullable = false)
+        private Long bookId;
+
+        public RelationPK() {
+        }
+
+        public RelationPK(Long bookId, Long orderId) {
+            this.bookId = bookId;
+            this.orderId = orderId;
+        }
+
+
+        public Long getbookId() {
+            return bookId;
+        }
+
+        public void setbookId(long bookId) {
+            this.bookId = bookId;
+        }
+
+        public Long getorderId() {
+            return orderId;
+        }
+
+        public void setorderId(Long orderId) {
+            this.orderId = orderId;
+        }
+
+        @Override
+        public int hashCode() {
+            final Integer prime = 31;
+            Integer result = 1;
+            result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
+            result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            OrderItem.RelationPK other = (OrderItem.RelationPK) obj;
+            if (bookId == null) {
+                if (other.bookId != null)
+                    return false;
+            } else if (!bookId.equals(other.bookId))
+                return false;
+            if (orderId == null) {
+                if (other.orderId != null)
+                    return false;
+            } else if (!orderId.equals(other.orderId))
+                return false;
+            return true;
+        }
+    }
+
 }
