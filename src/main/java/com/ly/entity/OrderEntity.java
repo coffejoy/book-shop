@@ -12,14 +12,12 @@ import java.util.Date;
  */
 @Table(name = "t_order")
 @Entity
-@IdClass(Order.RelationPK.class)
-public class Order {
+@IdClass(OrderEntity.RelationPK.class)
+public class OrderEntity {
 
     @Id
-    @Column(columnDefinition = "bigInteger")
     private Long userId;
     @Id
-    @Column(columnDefinition = "bigInteger")
     private Long orderId;
     private String userAddress;
     private Date orderTime;
@@ -95,41 +93,41 @@ public class Order {
 
         private static final long serialVersionUID = -7189167162738318201L;
         @Column(length = 12, nullable = false)
-        private Long orderId;
+        private Long userId;
         @Column(length = 12, nullable = false)
-        private Long bookId;
+        private Long orderId;
 
         public RelationPK() {
         }
 
-        public RelationPK(Long bookId, Long orderId) {
-            this.bookId = bookId;
+        public RelationPK(Long orderId, Long userId) {
             this.orderId = orderId;
+            this.userId = userId;
         }
 
-
-        public Long getbookId() {
-            return bookId;
-        }
-
-        public void setbookId(long bookId) {
-            this.bookId = bookId;
-        }
 
         public Long getorderId() {
             return orderId;
         }
 
-        public void setorderId(Long orderId) {
+        public void setorderId(long orderId) {
             this.orderId = orderId;
+        }
+
+        public Long getuserId() {
+            return userId;
+        }
+
+        public void setuserId(Long userId) {
+            this.userId = userId;
         }
 
         @Override
         public int hashCode() {
             final Integer prime = 31;
             Integer result = 1;
-            result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
             result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+            result = prime * result + ((userId == null) ? 0 : userId.hashCode());
             return result;
         }
 
@@ -142,15 +140,15 @@ public class Order {
             if (getClass() != obj.getClass())
                 return false;
             RelationPK other = (RelationPK) obj;
-            if (bookId == null) {
-                if (other.bookId != null)
-                    return false;
-            } else if (!bookId.equals(other.bookId))
-                return false;
             if (orderId == null) {
                 if (other.orderId != null)
                     return false;
             } else if (!orderId.equals(other.orderId))
+                return false;
+            if (userId == null) {
+                if (other.userId != null)
+                    return false;
+            } else if (!userId.equals(other.userId))
                 return false;
             return true;
         }

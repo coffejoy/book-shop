@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Table(name = "t_category")
 @Entity
-public class Category {
+public class CategoryEntity {
 
     @Id
     @GeneratedValue

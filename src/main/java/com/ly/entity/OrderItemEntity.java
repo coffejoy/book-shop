@@ -1,9 +1,6 @@
 package com.ly.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,7 +12,8 @@ import java.util.Date;
  */
 @Table(name="t_order_item")
 @Entity
-public class OrderItem {
+@IdClass(OrderItemEntity.RelationPK.class)
+public class OrderItemEntity {
 
     @Id
     private Long bookId;
@@ -150,7 +148,7 @@ public class OrderItem {
                 return false;
             if (getClass() != obj.getClass())
                 return false;
-            OrderItem.RelationPK other = (OrderItem.RelationPK) obj;
+            OrderItemEntity.RelationPK other = (OrderItemEntity.RelationPK) obj;
             if (bookId == null) {
                 if (other.bookId != null)
                     return false;

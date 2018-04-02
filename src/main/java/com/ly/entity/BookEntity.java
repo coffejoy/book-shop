@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Table(name = "t_book")
 @Entity
-public class Book {
+public class BookEntity {
 
     @Id
     @Column(columnDefinition = "bigInteger")
@@ -19,23 +19,21 @@ public class Book {
     private Long bookId;
     private String bookName;
     private String bookAuthor;
-    private Integer bookPrice;
-    private Integer bookDiscount;
-    private Integer currPrice;
+    private Double bookPrice;
+    private Double bookDiscount;
+    private Double bookCurrprice;
     private Date bookPublishTime;
     private String bookImg;
     private Integer cateId;
+    private Date createTime;
+    private Date updateTime;
 
     public Integer getCateId() {
         return cateId;
     }
-
     public void setCateId(Integer cateId) {
         this.cateId = cateId;
     }
-
-    private Date createTime;
-    private Date updateTime;
 
     public Date getCreateTime() {
         return createTime;
@@ -77,28 +75,28 @@ public class Book {
         this.bookAuthor = bookAuthor;
     }
 
-    public Integer getBookPrice() {
+    public Double getBookPrice() {
         return bookPrice;
     }
 
-    public void setBookPrice(Integer bookPrice) {
+    public void setBookPrice(Double bookPrice) {
         this.bookPrice = bookPrice;
     }
 
-    public Integer getBookDiscount() {
+    public Double getBookDiscount() {
         return bookDiscount;
     }
 
-    public void setBookDiscount(Integer bookDiscount) {
+    public void setBookDiscount(Double bookDiscount) {
         this.bookDiscount = bookDiscount;
     }
 
-    public Integer getCurrPrice() {
-        return currPrice;
+    public Double getBookCurrprice() {
+        return bookCurrprice;
     }
 
-    public void setCurrPrice(Integer currPrice) {
-        this.currPrice = currPrice;
+    public void setBookCurrprice(Double bookCurrprice) {
+        this.bookCurrprice = bookCurrprice;
     }
 
     public Date getBookPublishTime() {
