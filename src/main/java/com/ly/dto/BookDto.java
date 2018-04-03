@@ -18,6 +18,15 @@ public class BookDto {
     private Date bookPublishTime;
     private String bookImg;
     private Integer cateId;
+    private Integer status;
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public String getBookName() {
         return bookName;

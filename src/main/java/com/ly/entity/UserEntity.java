@@ -18,7 +18,7 @@ public class UserEntity {
     @GeneratedValue
     private Long userId;//用户id
     private String userName;//用户名
-    private Integer userPassword;//用户密码
+    private String userPassword;//用户密码
     private String userAddress;//用户地址
     private Integer status;//状态：0表示未激活，1表示已激活
     private String activeCode;//激活码，它是唯一值！即每个用户的激活码是不同的！
@@ -66,11 +66,11 @@ public class UserEntity {
         this.userAddress = userAddress;
     }
 
-    public Integer getUserPassword() {
+    public String getUserPassword() {
         return userPassword;
     }
 
-    public void setUserPassword(Integer userPassword) {
+    public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
 

@@ -1,5 +1,7 @@
 package com.ly.service;
 
+import com.ly.dto.CarDto;
+
 /**
  * <p>  </p>
  *
@@ -7,4 +9,7 @@ package com.ly.service;
  * @since 2018/3/30
  */
 public interface CarService {
+
+    void add(CarDto carDto);
+
 }

@@ -37,6 +37,7 @@ public class BookServiceTest {
         dto.setBookDiscount(0.5d);
         dto.setBookPublishTime(new Date());
         dto.setCateId(1);
+        dto.setStatus(1);
         bookService.add(dto);
 
     }

@@ -25,6 +25,7 @@ public class BookEntity {
     private Date bookPublishTime;
     private String bookImg;
     private Integer cateId;
+    private Integer status;//图书状态   0未上架 、1 可以购买 、2、已下架
     private Date createTime;
     private Date updateTime;
 
@@ -113,5 +114,13 @@ public class BookEntity {
 
     public void setBookImg(String bookImg) {
         this.bookImg = bookImg;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
