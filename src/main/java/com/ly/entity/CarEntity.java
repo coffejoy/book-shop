@@ -21,8 +21,12 @@ public class CarEntity {
     private Long bookId;
     @Id
     private Long userId;
-    private Integer quantity;
+
+
     private Date createTime;
+
+    @Column(name="quantity")
+    private Integer quantity;
     private Date updateTime;
 
     public Date getCreateTime() {
@@ -87,7 +91,7 @@ public class CarEntity {
         public RelationPK() {
         }
 
-        public RelationPK(Long bookId, Long UserId,Integer carId) {
+        public RelationPK(Long bookId, Long userId,Integer carId) {
             this.bookId = bookId;
             this.userId = userId;
             this.carId = carId;

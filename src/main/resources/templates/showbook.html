@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Title</title>
+</head>
+<body>
+
+<table border = "1px">
+    <tr>
+        <th>书名：</th>
+        <th>作者：</th>
+        <th>详情：</th>
+    </tr>
+    <tr th:each="book:${lns}">
+        <td th:text="${book.bookName}"></td>
+        <td th:text="${book.bookAuthor}"></td>
+        <td><a th:href="@{'/book/detail/'+${book.bookId}}">详情链接</a></td>
+    </tr>
+</table>
+</body>
+</html>

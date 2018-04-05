@@ -36,6 +36,8 @@ public class BookServiceImpl implements BookService {
         bookRepository.save(entity);
     }
 
+
+
     /**
      * 展示图书
      */
@@ -54,6 +56,11 @@ public class BookServiceImpl implements BookService {
         BookEntity bookEntity = bookRepository.findOne(id);
 
         return bookEntity;
+    }
+
+    @Override
+    public void del(Long bookId) {
+        bookRepository.delete(bookId);
     }
 
 }

@@ -29,8 +29,8 @@ public class BookServiceTest {
     @Test
     public void testAdd(){
         BookDto dto = new BookDto();
-        dto.setBookAuthor("梭罗");
-        dto.setBookName("瓦尔登湖");
+        dto.setBookAuthor("老舍");
+        dto.setBookName("骆驼");
         dto.setBookImg("cc");
         dto.setBookCurrprice(20d);
         dto.setBookPrice(40d);
@@ -54,6 +54,11 @@ public class BookServiceTest {
         BookEntity book = bookService.showOneBook(2L);
         System.out.println(JSON.toJSONString(book));
 
+    }
+
+    @Test
+    public void del(){
+        bookService.del(1L);
     }
 
 }

@@ -20,7 +20,7 @@ public class AdminEntity {
     @GeneratedValue
     private Long adminId;
     private String adminName;
-    private Integer adminPassword;
+    private String adminPassword;
     private Date createTime;
     private Date updateTime;
 
@@ -40,11 +40,11 @@ public class AdminEntity {
         this.adminName = adminName;
     }
 
-    public Integer getAdminPassword() {
+    public String getAdminPassword() {
         return adminPassword;
     }
 
-    public void setAdminPassword(Integer adminPassword) {
+    public void setAdminPassword(String adminPassword) {
         this.adminPassword = adminPassword;
     }
 

@@ -12,6 +12,20 @@ import java.util.List;
  */
 public interface UserService {
 
+    /**
+     * 用户注册
+     * @param userName
+     * @param userPassword
+     * @return
+     */
     int register(String userName,String userPassword);
+
+    /**
+     * 用户登录
+     * @param userName
+     * @param userPassword
+     * @return
+     */
+    int login(String userName,String userPassword);
 
 }

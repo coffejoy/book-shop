@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * <p>  </p>
  *
@@ -34,13 +37,18 @@ public class UserLoginController {
 
     @RequestMapping("/login")
     String userLogin(){
-        return "/userlogin";
+        return "user/login";
     }
 
     @RequestMapping("/judgelogin")
     @ResponseBody
-    String judgeLogin(String username,String password){
-
+    int judgeLogin(String userName, String userPassword, HttpServletResponse response){
+        int status = userService.login(userName,userPassword);
+        if(status==1){
+            Cookie cookie = new Cookie("login","success");
+            response.addCookie(cookie);
+        }
+        return status;
     }
 
 

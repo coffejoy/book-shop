@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>登录</title>
+</head>
+<body>
+<p>淘宝用户登录</p>
+<p id = "tip"></p>
+<p> 姓名：<input id="adminname" name="adminName" /></p>
+<p> 密码：<input id="adminpassword" name="adminPassword"/></p>
+<button type="submit" onclick="adminlogin()">登录</button>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript">
+    function adminlogin() {
+
+        var adminname = $("#adminname").val();
+        var password = $("#adminpassword").val();
+
+        $.ajax({
+            url:"/admin/judgelogin",
+            data:{"adminName":adminname,"adminPassword":password},
+            success:function(result){
+
+                console.log(result);
+                if(result==1){
+                    window.location.href='/index';//登录成功
+                }else if(result==0){
+                    $("#tip").text("账号或密码错误");
+                }else{
+                    alert("未知")
+                }
+            }
+        })
+
+    }
+    </script>
+</html>

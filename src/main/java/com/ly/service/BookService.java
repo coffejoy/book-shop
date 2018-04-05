@@ -20,4 +20,6 @@ public interface BookService {
 
     BookEntity showOneBook(Long id);
 
+    void del(Long bookId);
+
 }

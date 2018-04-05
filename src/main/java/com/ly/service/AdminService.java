@@ -7,4 +7,7 @@ package com.ly.service;
  * @since 2018/3/30
  */
 public interface AdminService {
+
+    int login(String adminName,String adminPassword);
+
 }

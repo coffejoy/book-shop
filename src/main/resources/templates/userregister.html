@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>注册</title>
+</head>
+<body>
+<p >淘宝注册</p>
+<p id = "tips"></p>
+<p> 姓名：<input id="username" name="userName" /></p>
+<p> 密码：<input id="userpassword" name="userPassword"/></p>
+<button type="submit" onclick="userregister()">注册</button>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript">
+    function userregister(){
+
+        var username = $("#username").val();
+        var password = $("#userpassword").val();
+
+        $.ajax({
+            url:"/user/registermanage",
+            data:{"userName":username,"userPassword":password},
+            success:function(result){
+                console.log(result);
+                if(result==0){
+                    $("#tips").text("该账号已存在！")
+                }else if(result == 1){
+                    window.location.href='/index';
+                }else {
+                    alert("未知！");
+                }
+            }
+
+        })
+
+
+    }
+</script>
+    </html>
