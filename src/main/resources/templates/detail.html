@@ -29,7 +29,7 @@
         <td th:text="${ly.bookPublishTime}"></td>
         <td th:text="${ly.cateId}"></td>
         <td><button><a>立即购买</a></button> |
-            <button onclick="showModel()">加入购物车</button>
+            <button onclick="addCar()">加入购物车</button>
         </td>
     </tr>
 </table>
@@ -40,9 +40,28 @@
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">购物车</h4>
             </div>
-            <div class="modal-body">在这里添加一些文本</div>
+            <div class="modal-body">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>商品</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                    </tr>
+                    </thead>
+                    <tbody id="car-data">
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">去结算</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -54,12 +73,28 @@
 <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 <script type="text/javascript">
-
+    //<![CDATA[
     function showModel(){
         $("#myModal").modal();
     }
 
     function load() {
+
+        $.ajax({
+            url:"/car/show",
+            type:"POST",
+            data:{"userId":1},
+            success:function(result){
+                var tableHtml="";
+                for(var i = 0;i < result.length;i++){
+                    tableHtml += ' <tr><td>'+result[i].bookName+'</td>'+
+                        ' <td>'+result[i].bookCurrPrice+'</td>'+
+                        ' <td>'+result[i].quantity+'</td></tr>'
+                }
+                console.log(tableHtml);
+                $("#car-data").html(tableHtml);
+            }
+        })
 
     }
 
@@ -85,7 +120,7 @@
 
         //模态框中加载当前用户购物车中的商品
 
-
+        load();
 
         //弹出模态框
         showModel();
@@ -93,6 +128,6 @@
 
 
     }
-
+    //]]>
 </script>
 </html>
