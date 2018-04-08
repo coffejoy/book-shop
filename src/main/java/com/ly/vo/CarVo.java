@@ -13,7 +13,7 @@ public class CarVo {
     private Integer carId;
     private Integer quantity;
     private String bookName;
-    private double bookCurrPrice;
+    private double bookCurrprice;
     private double bookPrice;
     private double bookDiscount;
     private String bookImg;
@@ -58,12 +58,12 @@ public class CarVo {
         this.bookName = bookName;
     }
 
-    public double getBookCurrPrice() {
-        return bookCurrPrice;
+    public double getBookCurrprice() {
+        return bookCurrprice;
     }
 
-    public void setBookCurrPrice(double bookCurrPrice) {
-        this.bookCurrPrice = bookCurrPrice;
+    public void setBookCurrprice(double bookCurrprice) {
+        this.bookCurrprice = bookCurrprice;
     }
 
     public double getBookPrice() {

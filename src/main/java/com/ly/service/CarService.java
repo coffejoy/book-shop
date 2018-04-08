@@ -16,5 +16,8 @@ public interface CarService {
 
     void add(CarDto carDto);
     List<CarVo> showcar(Long userId);
+    CarEntity getCar(Integer carId);
+
+
 
 }

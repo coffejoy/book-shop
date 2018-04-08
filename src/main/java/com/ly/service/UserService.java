@@ -28,4 +28,6 @@ public interface UserService {
      */
     int login(String userName,String userPassword);
 
+    UserEntity showUser(Long userId);//查找用户类
+
 }

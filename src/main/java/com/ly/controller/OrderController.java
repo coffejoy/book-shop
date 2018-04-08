@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/order")
 public class OrderController {
 
-    @RequestMapping("/show")
-    String showorder(){
-        return "/showorder";
-    }
+    /**
+     * 生成订单
+     */
+    @RequestMapping("/")
+    String makeOrder(Integer carId){
 
+
+        return null;
+    }
 }

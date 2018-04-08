@@ -12,20 +12,28 @@ import java.util.Date;
  */
 @Table(name="t_order_item")
 @Entity
-@IdClass(OrderItemEntity.RelationPK.class)
 public class OrderItemEntity {
 
     @Id
+    @GeneratedValue
+    private Long id;
     private Long bookId;
-    @Id
-    private Long orderId;
+    private String orderId;
     private Integer quantity;
-    private Integer bookPrice;
+    private Double bookPrice;
     private String bookName;
-    private Integer bookCurrprice;
-    private Integer bookTotalPrice;
+    private Double bookCurrprice;
+    private Double bookTotalPrice;
     private Date createTime;
     private Date updateTime;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getBookId() {
         return bookId;
@@ -35,11 +43,11 @@ public class OrderItemEntity {
         this.bookId = bookId;
     }
 
-    public Long getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
@@ -51,14 +59,6 @@ public class OrderItemEntity {
         this.quantity = quantity;
     }
 
-    public Integer getBookPrice() {
-        return bookPrice;
-    }
-
-    public void setBookPrice(Integer bookPrice) {
-        this.bookPrice = bookPrice;
-    }
-
     public String getBookName() {
         return bookName;
     }
@@ -67,19 +67,27 @@ public class OrderItemEntity {
         this.bookName = bookName;
     }
 
-    public Integer getBookCurrprice() {
+    public Double getBookPrice() {
+        return bookPrice;
+    }
+
+    public void setBookPrice(Double bookPrice) {
+        this.bookPrice = bookPrice;
+    }
+
+    public Double getBookCurrprice() {
         return bookCurrprice;
     }
 
-    public void setBookCurrprice(Integer bookCurrprice) {
+    public void setBookCurrprice(Double bookCurrprice) {
         this.bookCurrprice = bookCurrprice;
     }
 
-    public Integer getBookTotalPrice() {
+    public Double getBookTotalPrice() {
         return bookTotalPrice;
     }
 
-    public void setBookTotalPrice(Integer bookTotalPrice) {
+    public void setBookTotalPrice(Double bookTotalPrice) {
         this.bookTotalPrice = bookTotalPrice;
     }
 
@@ -97,70 +105,6 @@ public class OrderItemEntity {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-    public static class RelationPK implements Serializable {
-
-        private static final long serialVersionUID = -7189167162738318201L;
-        @Column(length = 12, nullable = false)
-        private Long orderId;
-        @Column(length = 12, nullable = false)
-        private Long bookId;
-
-        public RelationPK() {
-        }
-
-        public RelationPK(Long bookId, Long orderId) {
-            this.bookId = bookId;
-            this.orderId = orderId;
-        }
-
-
-        public Long getbookId() {
-            return bookId;
-        }
-
-        public void setbookId(long bookId) {
-            this.bookId = bookId;
-        }
-
-        public Long getorderId() {
-            return orderId;
-        }
-
-        public void setorderId(Long orderId) {
-            this.orderId = orderId;
-        }
-
-        @Override
-        public int hashCode() {
-            final Integer prime = 31;
-            Integer result = 1;
-            result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
-            result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
-            return result;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj)
-                return true;
-            if (obj == null)
-                return false;
-            if (getClass() != obj.getClass())
-                return false;
-            OrderItemEntity.RelationPK other = (OrderItemEntity.RelationPK) obj;
-            if (bookId == null) {
-                if (other.bookId != null)
-                    return false;
-            } else if (!bookId.equals(other.bookId))
-                return false;
-            if (orderId == null) {
-                if (other.orderId != null)
-                    return false;
-            } else if (!orderId.equals(other.orderId))
-                return false;
-            return true;
-        }
     }
 
 }

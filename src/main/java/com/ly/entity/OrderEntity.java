@@ -12,17 +12,16 @@ import java.util.Date;
  */
 @Table(name = "t_order")
 @Entity
-@IdClass(OrderEntity.RelationPK.class)
 public class OrderEntity {
 
     @Id
+    private String orderId;
     private Long userId;
-    @Id
-    private Long orderId;
     private String userAddress;
     private Date orderTime;
+    //0 取消 ,1 待支付,2 支付完成，3 已结束
     private Integer status;
-    private Integer totalPrice;
+    private double totalPrice;
     private Date createTime;
     private Date updateTime;
 
@@ -34,11 +33,11 @@ public class OrderEntity {
         this.userId = userId;
     }
 
-    public Long getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
@@ -66,11 +65,11 @@ public class OrderEntity {
         this.status = status;
     }
 
-    public Integer getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Integer totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -89,69 +88,4 @@ public class OrderEntity {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-    public static class RelationPK implements Serializable {
-
-        private static final long serialVersionUID = -7189167162738318201L;
-        @Column(length = 12, nullable = false)
-        private Long userId;
-        @Column(length = 12, nullable = false)
-        private Long orderId;
-
-        public RelationPK() {
-        }
-
-        public RelationPK(Long orderId, Long userId) {
-            this.orderId = orderId;
-            this.userId = userId;
-        }
-
-
-        public Long getorderId() {
-            return orderId;
-        }
-
-        public void setorderId(long orderId) {
-            this.orderId = orderId;
-        }
-
-        public Long getuserId() {
-            return userId;
-        }
-
-        public void setuserId(Long userId) {
-            this.userId = userId;
-        }
-
-        @Override
-        public int hashCode() {
-            final Integer prime = 31;
-            Integer result = 1;
-            result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
-            result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-            return result;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj)
-                return true;
-            if (obj == null)
-                return false;
-            if (getClass() != obj.getClass())
-                return false;
-            RelationPK other = (RelationPK) obj;
-            if (orderId == null) {
-                if (other.orderId != null)
-                    return false;
-            } else if (!orderId.equals(other.orderId))
-                return false;
-            if (userId == null) {
-                if (other.userId != null)
-                    return false;
-            } else if (!userId.equals(other.userId))
-                return false;
-            return true;
-        }
-    }
-
 }

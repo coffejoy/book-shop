@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"></meta>
     <title>增加图书</title>
 </head>
 <body>
 
+<p id ="tip"></p>
+<p>增加图书</p>
+
+<form>
+<p>图书名：<input name="bookName"/></p>
+<p>图书作者：<input name="bookAuthor"/></p>
+<p>图书原价：<input name="bookPrice"/></p>
+<p>图书折扣：<input name="bookDiscount"/></p>
+<p>图书现价：<input name="bookCurrprice"/></p>
+<p>图书出版时间：<input name="bookPublishTime"/></p>
+<p>图书图片：<input name="bookImg" /></p>
+<p>图书分类：<input name="cateId" /></p>
+<p>图书状态：<input name="status" /></p>
+</form>
+<button type="submit" onclick="addbook()">增加</button>
 </body>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.serialize-object.min.js}"></script>
+<script type="text/javascript">
+
+ function addbook(result) {
+    var data = $("form").serializeJSON()
+     console.log(typeof data);
+    var dataJson =  JSON.parse(data);
+    console.log(dataJson);
+    console.log(typeof dataJson);
+     $.ajax({
+         url:"/admin/addbook",
+         type:"POST",
+         dataType:"json",
+         data:data,
+         success:function (result) {
+             if(result==="success"){
+                 console.log("成功")
+             }else{
+                 alert("失败");
+             }
+         }
+     })
+ }
+
+</script>
 </html>

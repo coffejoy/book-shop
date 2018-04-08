@@ -6,6 +6,7 @@ import com.ly.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
@@ -46,9 +47,9 @@ public class AdminController {
     }
 
 
-    @RequestMapping("/addbook")
+    @RequestMapping(value="/addbook",method = RequestMethod.POST)
     @ResponseBody
-    String addBook(@Valid BookDto bookDto) {
+    String addBook(BookDto bookDto) {
         String Success = "success";
         bookService.add(bookDto);
         return Success;

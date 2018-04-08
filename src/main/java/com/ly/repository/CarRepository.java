@@ -16,6 +16,7 @@ import java.util.List;
 public interface CarRepository extends JpaRepository<CarEntity,CarEntity.RelationPK> {
 
     List<CarEntity> findByUserId(Long userId);
-
+    CarEntity findByBookIdAndUserId(Long bookId,Long userId);
+    CarEntity findByCarId(Integer carId);
 
 }

@@ -67,4 +67,11 @@ public class UserServiceImpl implements UserService {
         }
         return status;
     }
+
+    @Override
+    public UserEntity showUser(Long userId) {
+        return userRepository.findOne(userId);
+    }
+
+
 }

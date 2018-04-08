@@ -11,9 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>  </p>
@@ -33,11 +31,24 @@ public class CarServiceImpl implements CarService {
     @Override
     public void add(CarDto carDto) {
 
-        CarEntity carEntity = new CarEntity();
-        BeanUtils.copyProperties(carDto,carEntity);
-        carEntity.setCreateTime(new Date());
-        carEntity.setUpdateTime(new Date());
-        carRepository.save(carEntity);
+        Long bookId = carDto.getBookId();
+        Long userId = carDto.getUserId();
+        //1.查找购物车中是否存在此商品
+        CarEntity carEntity = carRepository.findByBookIdAndUserId(bookId, userId);
+        //2.若有则覆盖
+
+        if (carEntity != null) {
+            Integer quantity = carEntity.getQuantity();
+            carEntity.setQuantity(quantity + carDto.getQuantity());//数量加一
+            carRepository.save(carEntity);
+        } else { //3.若没有则添加
+            carEntity = new CarEntity();
+
+            BeanUtils.copyProperties(carDto, carEntity);
+            carEntity.setCreateTime(new Date());
+            carEntity.setUpdateTime(new Date());
+            carRepository.save(carEntity);
+        }
     }
 
     @Override
@@ -45,16 +56,28 @@ public class CarServiceImpl implements CarService {
 
         List<CarVo> voList = new ArrayList<CarVo>();
         List<CarEntity> list = carRepository.findByUserId(userId);
-        for(CarEntity carEntity:list){
+
+        for (CarEntity carEntity : list) {
             Long bId = carEntity.getBookId();
             CarVo carVo = new CarVo();
             BookEntity bookEntity = bookService.showOneBook(bId);
-            BeanUtils.copyProperties(carEntity,carVo);
-            BeanUtils.copyProperties(bookEntity,carVo);
+            BeanUtils.copyProperties(carEntity, carVo);
+            BeanUtils.copyProperties(bookEntity, carVo);
             voList.add(carVo);
+
+
         }
 
 
         return voList;
     }
+
+    @Override
+    public CarEntity getCar(Integer carId) {
+
+
+        return carRepository.findByCarId(carId);
+    }
+
+
 }

@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <p>  </p>
  *
@@ -20,6 +23,9 @@ public class CarServiceTest {
     @Autowired
     private CarService carService;
 
+    @Autowired
+    private OrderService orderService;
+
     @Test
     public void addCar(){
 
@@ -32,4 +38,12 @@ public class CarServiceTest {
 
     }
 
+    @Test
+    public void buy(){
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(1);
+        list.add(2);
+        orderService.buy(list);
+
+    }
 }

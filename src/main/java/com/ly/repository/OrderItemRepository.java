@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @author ly
  * @since 2018/3/29
  */
-public interface OrderItemRepository extends JpaRepository<OrderItemEntity,OrderItemEntity.RelationPK> {
+public interface OrderItemRepository extends JpaRepository<OrderItemEntity,Long> {
 }
