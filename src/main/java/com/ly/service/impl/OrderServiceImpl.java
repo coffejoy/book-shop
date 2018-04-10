@@ -119,4 +119,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
+    @Override
+    public   List<OrderEntity> showOrder(Long userId) {
+        return orderRepository.findAll();
+    }
+
+    @Override
+    public OrderEntity showOrder(String OrderId) {
+        return null;
+    }
+
 }
