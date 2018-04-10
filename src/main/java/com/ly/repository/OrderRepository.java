@@ -1,6 +1,7 @@
 package com.ly.repository;
 
 import com.ly.entity.OrderEntity;
+import com.ly.entity.OrderItemEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +16,7 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<OrderEntity,String> {
 
     List<OrderEntity> findAllByUserId(Long userId);
+
+    List<OrderEntity> findByOrderId(String orderId);
 
 }

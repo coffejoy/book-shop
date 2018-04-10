@@ -5,6 +5,8 @@ import com.ly.entity.OrderItemEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * <p>  </p>
  *
@@ -12,4 +14,7 @@ import org.springframework.stereotype.Repository;
  * @since 2018/3/29
  */
 public interface OrderItemRepository extends JpaRepository<OrderItemEntity,Long> {
+
+    List<OrderItemEntity> findAllByOrderId(String orderId);
+
 }

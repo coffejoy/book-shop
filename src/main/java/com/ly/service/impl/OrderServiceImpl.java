@@ -8,10 +8,7 @@ import com.ly.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * <p>  </p>
@@ -23,7 +20,7 @@ import java.util.UUID;
 public class OrderServiceImpl implements OrderService {
 
 
-    private OrderService orderService;
+    private OrderItemService orderItemService;
 
     @Autowired
     private CarService carService;
@@ -40,8 +37,11 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private OrderService orderService;
+
     @Override
-    public void buy(Integer carId,String orderId) {
+    public void buy(Integer carId, String orderId) {
         //购物车类
         CarEntity carEntity = carService.getCar(carId);
         Long userId = carEntity.getUserId();
@@ -55,9 +55,7 @@ public class OrderServiceImpl implements OrderService {
         Double bookPrice = bookEntity.getBookPrice();
         String bookName = bookEntity.getBookName();
         Double bookCurrprice = bookEntity.getBookCurrprice();
-        Double bookTotalPrice = bookCurrprice*quantity;
-
-       // int allBookPrice += bookTotalPrice;
+        Double bookTotalPrice = bookCurrprice * quantity;
 
         orderItemEntity.setBookId(bookId);
         orderItemEntity.setOrderId(orderId);
@@ -70,39 +68,53 @@ public class OrderServiceImpl implements OrderService {
         orderItemEntity.setUpdateTime(new Date());
         orderItemRepository.save(orderItemEntity);
 
-        //订单类
-        OrderEntity orderEntity = orderRepository.findOne(orderId);
-        if(orderEntity==null){
-             orderEntity = new OrderEntity();
+    }
+
+    @Override
+    public void buy(List<Integer> carIds, Long userId) {
+        String orderId = UUID.randomUUID().toString();
+
+        for (Integer carId : carIds) {
+            buy(carId, orderId);
+        }
+
+        //计算商品总价格
+        List<OrderItemEntity> list = orderService.showOrderItem(orderId);
+        Double allPrice = 0D;
+        if (list != null) {
+            //获取商品类商品总价格
+            for (OrderItemEntity orderItemEntity : list) {
+                allPrice += orderItemEntity.getBookTotalPrice();
+            }
+            //存储订单
+            OrderEntity orderEntity = new OrderEntity();
             //获取用户地址
             UserEntity userEntity = userService.showUser(userId);
             String userAddress = userEntity.getUserAddress();
             Integer status = 1;//商品状态为可购买
-            Double totalPrice = bookTotalPrice;
             orderEntity.setOrderId(orderId);
             orderEntity.setUserId(userId);
             orderEntity.setUserAddress(userAddress);
             orderEntity.setOrderTime(new Date());
             orderEntity.setStatus(status);
-            orderEntity.setTotalPrice(bookTotalPrice);
+            orderEntity.setTotalPrice(allPrice);
             orderEntity.setCreateTime(new Date());
             orderEntity.setUpdateTime(new Date());
             orderRepository.save(orderEntity);
 
         }
-}
-
-
+    }
 
 
     @Override
-    public void buy(List<Integer> carIds){
-        String orderId = UUID.randomUUID().toString();
+    public List<OrderEntity> showOrder(Long userId) {
+        return orderRepository.findAll();
+    }
 
-        for(Integer carId:carIds ){
-            buy(carId,orderId);
-        }
+    @Override
+    public List<OrderItemEntity> showOrderItem(String orderId) {
 
+        return orderItemRepository.findAllByOrderId(orderId);
 
     }
 
@@ -116,4 +128,5 @@ public class OrderServiceImpl implements OrderService {
     public OrderEntity showOrder(String OrderId) {
         return null;
     }
+
 }
