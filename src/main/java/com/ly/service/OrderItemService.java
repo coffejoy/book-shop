@@ -1,5 +1,9 @@
 package com.ly.service;
 
+import com.ly.entity.OrderItemEntity;
+
+import java.util.List;
+
 /**
  * <p>  </p>
  *
@@ -7,4 +11,5 @@ package com.ly.service;
  * @since 2018/3/30
  */
 public interface OrderItemService {
+
 }
