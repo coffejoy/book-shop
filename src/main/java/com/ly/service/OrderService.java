@@ -1,6 +1,7 @@
 package com.ly.service;
 
 import com.ly.entity.OrderEntity;
+import com.ly.entity.OrderItemEntity;
 
 import java.util.List;
 
@@ -12,8 +13,9 @@ import java.util.List;
  */
 public interface OrderService {
 
-    void buy(List<Integer> carIds);
+    void buy(List<Integer> carIds,Long userId);
     void buy(Integer carId,String orderId);
     List<OrderEntity> showOrder(Long userId);
-    OrderEntity showOrder(String OrderId);
+    List<OrderItemEntity> showOrderItem(String orderId);
+
 }

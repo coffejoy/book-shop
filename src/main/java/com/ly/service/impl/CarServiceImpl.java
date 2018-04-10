@@ -64,11 +64,7 @@ public class CarServiceImpl implements CarService {
             BeanUtils.copyProperties(carEntity, carVo);
             BeanUtils.copyProperties(bookEntity, carVo);
             voList.add(carVo);
-
-
         }
-
-
         return voList;
     }
 
