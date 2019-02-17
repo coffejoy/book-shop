@@ -1,6 +1,6 @@
 package com.ly.service;
 
-import com.ly.entity.Admin;
+import com.ly.entity.Excel;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,8 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author xigua
  * @since 2019-02-16
  */
-public interface AdminService extends IService<Admin> {
-
-    int login(String adminName,String adminPassword);
-
+public interface ExcelService extends IService<Excel> {
 }

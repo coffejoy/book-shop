@@ -1,12 +1,10 @@
 package com.ly.service.impl;
 
-import com.ly.entity.OrderItem;
-import com.ly.mapper.OrderItemMapper;
-import com.ly.service.OrderItemService;
+import com.ly.entity.Excel;
+import com.ly.mapper.ExcelMapper;
+import com.ly.service.ExcelService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.Date;
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,7 +16,5 @@ import org.springframework.stereotype.Service;
  * @since 2019-02-16
  */
 @Service
-public class OrderItemServiceImpl extends ServiceImpl<OrderItemMapper, OrderItem> implements OrderItemService {
-
-
+public class ExcelServiceImpl extends ServiceImpl<ExcelMapper, Excel> implements ExcelService {
 }
