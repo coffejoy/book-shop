@@ -1,15 +1,15 @@
 package com.ly.service;
 
-import com.ly.entity.OrderItemEntity;
-
-import java.util.List;
+import com.ly.entity.OrderItem;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * <p>  </p>
+ * <p>
+ *  服务类
+ * </p>
  *
- * @author ly
- * @since 2018/3/30
+ * @author xigua
+ * @since 2019-02-16
  */
-public interface OrderItemService {
-
+public interface OrderItemService extends IService<OrderItem> {
 }

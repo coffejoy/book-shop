@@ -1,7 +1,6 @@
 package com.ly.controller;
 
 import com.ly.dto.CarDto;
-import com.ly.entity.CarEntity;
 import com.ly.service.BookService;
 import com.ly.service.CarService;
 import com.ly.vo.CarVo;

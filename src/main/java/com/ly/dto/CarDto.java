@@ -1,7 +1,5 @@
 package com.ly.dto;
 
-import javax.persistence.Id;
-
 /**
  * <p>  </p>
  *

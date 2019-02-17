@@ -1,14 +1,20 @@
 package com.ly.service.impl;
 
+import com.ly.entity.Category;
+import com.ly.mapper.CategoryMapper;
 import com.ly.service.CategoryService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import java.util.Date;
 import org.springframework.stereotype.Service;
 
 /**
- * <p>  </p>
+ * <p>
+ *  服务实现类
+ * </p>
  *
- * @author ly
- * @since 2018/3/30
+ * @author xigua
+ * @since 2019-02-16
  */
 @Service
-public class CategoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
 }

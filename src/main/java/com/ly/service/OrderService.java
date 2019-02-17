@@ -1,21 +1,23 @@
 package com.ly.service;
 
-import com.ly.entity.OrderEntity;
-import com.ly.entity.OrderItemEntity;
+import com.ly.entity.Order;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.ly.entity.OrderItem;
 
 import java.util.List;
 
 /**
- * <p>  </p>
+ * <p>
+ *  服务类
+ * </p>
  *
- * @author ly
- * @since 2018/3/30
+ * @author xigua
+ * @since 2019-02-16
  */
-public interface OrderService {
+public interface OrderService extends IService<Order> {
 
-    void buy(List<Integer> carIds,Long userId);
+    void buy(List<Integer> carIds, Long userId);
     void buy(Integer carId,String orderId);
-    List<OrderEntity> showOrder(Long userId);
-    List<OrderItemEntity> showOrderItem(String orderId);
-
+    List<Order> showOrder(Long userId);
+    List<OrderItem> showOrderItem(String orderId);
 }

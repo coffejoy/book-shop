@@ -1,66 +1,55 @@
 package com.ly.service.impl;
 
 import com.ly.dto.BookDto;
-import com.ly.entity.BookEntity;
-import com.ly.repository.BookRepository;
+import com.ly.entity.Book;
+import com.ly.mapper.BookMapper;
 import com.ly.service.BookService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-
 /**
- * <p>  </p>
+ * <p>
+ *  服务实现类
+ * </p>
  *
- * @author ly
- * @since 2018/3/30
+ * @author xigua
+ * @since 2019-02-16
  */
 @Service
-public class BookServiceImpl implements BookService {
+public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements BookService {
 
     @Autowired
-    private BookRepository bookRepository;
+    private BookMapper bookMapper;
 
-    /**
-     * 添加图书
-     * @param dto
-     */
     @Override
     public void add(BookDto dto) {
-        BookEntity entity = new BookEntity();
-        BeanUtils.copyProperties(dto,entity);
-        entity.setCreateTime(new Date());
-        entity.setUpdateTime(new Date());
-        bookRepository.save(entity);
+        Book book = new Book();
+        BeanUtils.copyProperties(dto,book);
+        book.setCreateTime(new Date());
+        book.setUpdateTime(new Date());
+        bookMapper.insert(book);
     }
 
-
-
-    /**
-     * 展示图书
-     */
     @Override
-    public List<BookEntity> showBookList() {
-
-        List<BookEntity> list = bookRepository.findAll();
-
+    public List<Book> showBookList() {
+        List<Book> list = bookMapper.selectAllCar();
         return list;
-
     }
 
     @Override
-    public BookEntity showOneBook(Long id) {
+    public Book showOneBook(Long id) {
 
-        BookEntity bookEntity = bookRepository.findOne(id);
-
+        Book bookEntity = bookMapper.selectById(id);
         return bookEntity;
     }
 
     @Override
     public void del(Long bookId) {
-        bookRepository.delete(bookId);
+        bookMapper.deleteById(bookId);
     }
-
 }

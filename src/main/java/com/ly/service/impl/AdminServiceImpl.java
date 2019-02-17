@@ -1,30 +1,29 @@
 package com.ly.service.impl;
 
-import com.ly.entity.AdminEntity;
-import com.ly.repository.AdminRepository;
+import com.ly.entity.Admin;
+import com.ly.mapper.AdminMapper;
 import com.ly.service.AdminService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * <p>  </p>
+ * <p>
+ *  服务实现类
+ * </p>
  *
- * @author ly
- * @since 2018/3/30
+ * @author xigua
+ * @since 2019-02-16
  */
 @Service
-public class AdminServiceImpl implements AdminService {
+public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements AdminService {
 
     @Autowired
-    private AdminRepository adminRepository;
+    private AdminMapper adminMapper;
 
-    /**
-     * 管理员登录
-     * @param adminName
-     * @param adminPassword
-     * @return
-     */
     @Override
     public int login(String adminName, String adminPassword) {
 
@@ -32,13 +31,12 @@ public class AdminServiceImpl implements AdminService {
         if (StringUtils.isBlank(adminName) || StringUtils.isBlank(adminPassword)) {
             return status;//登录账号或密码为空
         }
-        AdminEntity admin = adminRepository.findByAdminName(adminName);
+        Admin admin = adminMapper.findByAdminName(adminName);
 
         if (admin == null || !adminPassword.equals(admin.getAdminPassword())) {
             return status;//账号不存在或密码错误
         } else {
             return 1;
         }
-
     }
 }

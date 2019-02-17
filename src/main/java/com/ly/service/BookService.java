@@ -1,25 +1,25 @@
 package com.ly.service;
 
 import com.ly.dto.BookDto;
-import com.ly.entity.BookEntity;
-
-import java.util.Date;
+import com.ly.entity.Book;
+import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- * <p>  </p>
+ * <p>
+ *  服务类
+ * </p>
  *
- * @author ly
- * @since 2018/3/30
+ * @author xigua
+ * @since 2019-02-16
  */
-public interface BookService {
+public interface BookService extends IService<Book> {
 
     void add(BookDto dto);
 
-    List<BookEntity> showBookList();
+    List<Book> showBookList();
 
-    BookEntity showOneBook(Long id);
+    Book showOneBook(Long id);
 
     void del(Long bookId);
-
 }

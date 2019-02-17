@@ -1,12 +1,17 @@
 package com.ly.service;
 
+import com.ly.entity.Admin;
+import com.baomidou.mybatisplus.extension.service.IService;
+
 /**
- * <p>  </p>
+ * <p>
+ *  服务类
+ * </p>
  *
- * @author ly
- * @since 2018/3/30
+ * @author xigua
+ * @since 2019-02-16
  */
-public interface AdminService {
+public interface AdminService extends IService<Admin> {
 
     int login(String adminName,String adminPassword);
 

@@ -1,23 +1,22 @@
 package com.ly.service;
 
 import com.ly.dto.CarDto;
-import com.ly.entity.CarEntity;
+import com.ly.entity.Car;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.ly.vo.CarVo;
 
 import java.util.List;
 
 /**
- * <p>  </p>
+ * <p>
+ *  服务类
+ * </p>
  *
- * @author ly
- * @since 2018/3/30
+ * @author xigua
+ * @since 2019-02-16
  */
-public interface CarService {
-
+public interface CarService extends IService<Car> {
     void add(CarDto carDto);
     List<CarVo> showcar(Long userId);
-    CarEntity getCar(Integer carId);
-
-
-
+    Car getCar(Integer carId);
 }

@@ -1,6 +1,6 @@
 package com.ly.config;
 
-import com.ly.entity.UserEntity;
+import com.ly.entity.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -57,7 +57,7 @@ public class ShiroRealm extends AuthorizingRealm {
         String userName=token.getUsername();
 
         //通过用户名获取用户信息
-        UserEntity user = null;
+        User user = null;
         if(user != null){
             Session session = SecurityUtils.getSubject().getSession();
             session.setAttribute("user", user);

@@ -1,16 +1,17 @@
 package com.ly.service;
 
-import com.ly.entity.UserEntity;
-
-import java.util.List;
+import com.ly.entity.User;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * <p>  </p>
+ * <p>
+ *  服务类
+ * </p>
  *
- * @author ly
- * @since 2018/3/30
+ * @author xigua
+ * @since 2019-02-16
  */
-public interface UserService {
+public interface UserService extends IService<User> {
 
     /**
      * 用户注册
@@ -28,6 +29,5 @@ public interface UserService {
      */
     int login(String userName,String userPassword);
 
-    UserEntity showUser(Long userId);//查找用户类
-
+    User showUser(Long userId);//查找用户类
 }
